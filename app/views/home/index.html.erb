@@ -1,0 +1,77 @@
+Welcome home!
+
+<header class="clearfix">
+  <% if @user %>
+  		<a href='/auth/facebook' class="fb_button fb_button_medium" id="login">
+        <span class="fb_button_text">Log In</span>
+      </a>
+      <a href='/auth/facebook' class="fb_button fb_button_medium" id="logout">
+        <span class="fb_button_text">Logout</span>
+      </a>
+      <p id="picture" style="background-image: url(https://graph.facebook.com/<%= @user['id'] %>/picture?type=normal)"></p>
+      <div>
+        <h1>Welcome, <strong><%= @user['name'] %></strong></h1>
+        <p class="tagline">
+          This is your app
+          <a href="<%= @app['@app'] %>"><%= @app['name'] %></a>
+        </p>
+        <form>
+        	http://facecbook.com/
+        	<input type="text" name="facebook_page_url" />
+        	<input type="submit" value="Fetch" />
+        </form>
+        <hr/>
+        <h1><%= @page_url %></h1>
+        <ul>
+        	<%
+        		@pictures.each_with_index do |p|
+        	%>
+        			<%= image_tag p['src'] %>
+        	<%
+        		end
+        	%>
+        </ul>
+      </div>
+  <% else %>
+    <div>
+      <h1>Welcome</h1>
+        <a href='/auth/facebook' class="fb_button fb_button_medium" id="login">
+          <span class="fb_button_text">Log In</span>
+        </a>
+        <a href='/auth/facebook' class="fb_button fb_button_medium" id="logout">
+	        <span class="fb_button_text">Logout</span>
+	      </a>
+    </div>
+  <% end %>
+</header>
+
+<script>
+
+	$(function(){
+		 $('#login').click(function(e){
+		 		e.preventDefault();
+		 		 FB.login(function(response) {
+				   if (response.authResponse) {
+				     console.log('Welcome!  Fetching your information.... ');
+				     FB.api('/me', function(response) {
+				       console.log('Good to see you, ' + response.name + '.');
+				     });
+				   } else {
+				     console.log('User cancelled login or did not fully authorize.');
+				   }
+				 });
+		 });
+
+		 $('#logout').click(function(e){
+		 		e.preventDefault();
+		 		FB.logout(function(response) {
+				  console.log(response);
+				});
+		 });
+
+		 $.get('http://graph.facebook.com/20531316728/photos', function(){
+		 		console.log(arguments);
+		 });
+	});
+
+</script>

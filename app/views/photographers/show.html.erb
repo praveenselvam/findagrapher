@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @photographer.name %>
+</p>
+
+<p>
+  <b>Photo:</b>
+  <%= @photographer.photo %>
+</p>
+
+<p>
+  <b>Portfolio:</b>
+  <%= @photographer.portfolio %>
+</p>
+
+
+<%= link_to 'Edit', edit_photographer_path(@photographer) %> |
+<%= link_to 'Back', photographers_path %>

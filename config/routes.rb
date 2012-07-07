@@ -1,4 +1,8 @@
 Findagrapher::Application.routes.draw do
+  resources :services
+
+  resources :offerings
+
   resources :photographers, :login
 
   root :to => 'home#index'

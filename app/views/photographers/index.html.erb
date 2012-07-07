@@ -5,6 +5,8 @@
     <th>Name</th>
     <th>Photo</th>
     <th>Portfolio</th>
+    <th>Email</th>
+    <th>Place</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,6 +17,8 @@
     <td><%= photographer.name %></td>
     <td><%= photographer.photo %></td>
     <td><%= photographer.portfolio %></td>
+    <td><%= photographer.email %></td>
+    <td><%= photographer.place %></td>
     <td><%= link_to 'Show', photographer %></td>
     <td><%= link_to 'Edit', edit_photographer_path(photographer) %></td>
     <td><%= link_to 'Destroy', photographer, confirm: 'Are you sure?', method: :delete %></td>

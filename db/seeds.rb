@@ -5,3 +5,8 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+events = EventType.create([{event: "Wedding"}, {event: "Reception"}, {event: "Engagement"}, {event: "Pre/Post Wedding"}, {event: "New Born"}, {event: "Babies"}])
+services = Offering.create([{event: "Creative Photography"}, {event: "Standard Photography"}, {event: "Creative Video"}])
+services = Service.create([{event: "Digital Photos"}, {event: "Album"}, {event: "Video"}])

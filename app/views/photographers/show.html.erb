@@ -1,29 +1,40 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="row">
+    <div class="span4">
+      <div class="black-box pad-top">
+        <div class="title">
+          <h2>Praveen Selvam</h2>
+        </div>
+        <div class="content">
 
-<p>
-  <b>Name:</b>
-  <%= @photographer.name %>
-</p>
-
-<p>
-  <b>Photo:</b>
-  <%= @photographer.photo %>
-</p>
-
-<p>
-  <b>Portfolio:</b>
-  <%= @photographer.portfolio %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @photographer.email %>
-</p>
-
-<p>
-  <b>Place:</b>
-  <%= @photographer.place %>
-</p>
-
-<%= link_to 'Edit', edit_photographer_path(@photographer) %> |
-<%= link_to 'Back', photographers_path %>
+          <!-- This dummy content below is to autorize to facebook. Will be moved somewhere else. -->
+          <div class="dummy">
+            <a href='/auth/facebook' class="fb_button fb_button_medium" id="login">
+              <span class="fb_button_text">Log In</span>
+            </a>
+            <a href='/auth/facebook' class="fb_button fb_button_medium" id="logout">
+              <span class="fb_button_text">Logout</span>
+            </a>
+            <% if @user %>
+              <div>
+                Welcome, <strong><%= @user['name'] %></strong>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="span8">
+      <div class="black-box pad-top">
+        <div class="content">
+          <%
+            @pictures.each_with_index do |p|
+          %>
+              <%= image_tag p['src'] %>
+          <%
+            end
+          %>
+        </div>
+    </div>
+  </div>
+</div>

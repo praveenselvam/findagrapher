@@ -15,6 +15,24 @@ class PhotographersController < ApplicationController
   def show
     @photographer = Photographer.find(params[:id])
 
+    begin
+      @graph = Koala::Facebook::API.new(session[:access_token])
+      @app = @graph.get_object(APP_CONFIG[:facebook][:app_id])
+
+      page_url = params[:facebook_page_url]
+
+      if session[:access_token]
+        @user    = @graph.get_object("me")
+        # This is now mocked out. Replace with actual username.
+        fql_query = "SELECT page_id, pic FROM page WHERE username = 'ps.creativefactory'"
+        page = @graph.fql_query(fql_query)
+        page_id = page.first["page_id"]
+        @pictures = @graph.fql_query("SELECT src, src_height, src_width, src_small, src_small_height, src_small_width FROM photo WHERE pid IN (SELECT pid FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner='#{page_id}' AND type!='profile'))")
+      end
+    rescue Koala::Facebook::APIError
+      session[:access_token] = nil
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @photographer }

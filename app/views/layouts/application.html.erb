@@ -79,12 +79,34 @@
             <% end %>
           </div>
           <div class="span2 offset6 login-section">
-            <a class="btn">Register</a>
+            <a href="#photographer-registration" data-toggle="modal" class="btn">Register</a>
           </div>
         </div>
       </div>
     </header>
     <%= yield %>
+  </div>
+
+  <div class="modal hide" id="photographer-registration">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">×</button>
+      <h3>Registration for Photographers</h3>
+    </div>
+    <div class="modal-body">
+      <p>
+        Good news! findagrapher lets you sign in with your existing facebook account.
+      </p>
+      <p class="login-section">
+        <%= link_to "Login using facebook", new_photographer_path, :class => "btn btn-info" %>
+        <br/>
+        <span class="note">
+          We don't post anything without your knowledge.
+        </span>
+      </p>
+      <p>
+        Register today for free and get in before the competition builds up. Link your existing portfolios, setup alerts & get notified when we come to know of clients of your choice.
+      </p>
+    </div>
   </div>
 </body>
 </html>

@@ -76,7 +76,16 @@
         Your full name:
       </div>
       <div class="f-content span8">
-        <input type="text" />
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        Your location:
+      </div>
+      <div class="f-content span8">
+        <%= f.text_field :place %>
       </div>
     </div>
     
@@ -102,7 +111,7 @@
         E-Mail:
       </div>
       <div class="f-content span8">
-        <input type="text" />
+        <%= f.text_field :email %>
         <br/>
         <div class="note">
           <h4>We won't spam you.</h4>

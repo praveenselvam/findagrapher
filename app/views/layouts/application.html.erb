@@ -3,11 +3,10 @@
 <html>
 <head>
 	<meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 
   <title>Findagrapher</title>
-  <link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
-  <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />
 
   <!--[if IEMobile]>
   <link rel="stylesheet" href="mobile.css" media="screen" type="text/css"  />
@@ -26,6 +25,7 @@
   <![endif]-->
 </head>
 <body>
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 	<div id="fb-root"></div>
   <script type="text/javascript">
     window.fbAsyncInit = function() {
@@ -69,6 +69,17 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   </script>
-	<%= yield %>
+  <div id="page-bg">
+    <header class="clearfix">
+      <div class="container">
+        <div class="row">
+          <div class="logo span4">
+            <%= image_tag "/assets/logo.png" %>
+          </div>
+        </div>
+      </div>
+    </header>
+    <%= yield %>
+  </div>
 </body>
 </html>

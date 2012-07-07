@@ -1,4 +1,6 @@
 Findagrapher::Application.routes.draw do
+  resources :shoots
+
   resources :services
 
   resources :offerings

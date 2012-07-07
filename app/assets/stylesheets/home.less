@@ -16,10 +16,42 @@ body{
 
 body{
 	background-color: #252525;
+	color: #464646;
 }
 
 .pad-top{
 	padding-top: 40px;
+}
+
+.form{
+
+	.row{
+		padding-bottom: 20px;
+	}
+
+	h3{
+		font-family: 'DistrictThinRegular';
+		border-bottom: 1px solid;
+	}
+
+	.f-name{
+		text-align: right;
+		color: #c31503;
+		line-height: 30px
+	}
+
+	.f-content{
+		line-height: 30px;
+
+		.option{
+			float: left;
+			width: 200px;
+
+			input{
+				margin-right: 5px;
+			}
+		}
+	}
 }
 
 #page-bg{
@@ -49,17 +81,43 @@ header{
 	}
 }
 
-#get-started{
+.white-box,
+.black-box{
 	.title{
 		font-family: 'DistrictThinRegular';
 		background: url("/assets/bg/trans-pink-60.png") repeat scroll 0 0 transparent;
 		padding: 10px 20px;
 		color: #fff;
 	}
+}
+
+.white-box{
+	.content{
+		background: url("/assets/bg/trans-white-95.png") repeat scroll 0 0 transparent;
+		padding: 20px 0;
+	}
+}
+
+.black-box{
+	.content{
+		background: url("/assets/bg/trans-black-70.png") repeat scroll 0 0 transparent;
+		padding: 20px;
+		color: #acacac;
+	}
+}
+
+#get-started{
 
 	.content{
 		background: url("/assets/bg/trans-black-70.png") repeat scroll 0 0 transparent;
 		padding: 20px;
 		color: #acacac;
+	}
+}
+
+.email-note{
+	h4{
+		font-weight: normal;
+		color: #c31503;
 	}
 }

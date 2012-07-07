@@ -74,7 +74,9 @@
       <div class="container">
         <div class="row">
           <div class="logo span4">
-            <%= image_tag "/assets/logo.png" %>
+            <%= link_to "/" do %>
+              <%= image_tag "/assets/logo.png" %>
+            <% end %>
           </div>
           <div class="span2 offset6 login-section">
             <a class="btn">Register</a>

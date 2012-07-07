@@ -1,0 +1,131 @@
+<div class="form">
+  <%= form_for(@shoot) do |f| %>
+    <% if @shoot.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
+
+        <ul>
+        <% @shoot.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <h3 class="span8 offset4">Tell us what you need.</h3>
+    </div>
+
+    <div class="row">
+      <div class="f-name span4">
+        Name: (Demo field)
+      </div>
+      <div class="f-content span8">
+        <%= f.text_field :name %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        I need a photographer for:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Wedding', 'Reception', 'Engagement', 'Pre/Post Wedding', 'New Born', 'Babies']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        I'm looking for:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Creative Photography', 'Standard Photography', 'Creative Video']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        After the shoot, I need:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Digital Photos', 'Album', 'Video', 'Small Prints', 'Big Prints']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        My total budget is:
+      </div>
+      <div class="f-content span8">
+        Rupees <input type="text" />
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 class="span8 offset4">How would you like to be notified?</h3>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        E-Mail:
+      </div>
+      <div class="f-content span8">
+        <input type="text" />
+        <br/>
+        <div class="email-note">
+          <h4>We won't spam you.</h4>
+          <div>
+            Remember, you can always instantaly turn off this notification once you find your photographer.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        Notify:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Once a day', 'Twice a week', 'Once a week']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="f-content span8 offset4">
+        <%= f.submit "Place Request", :class => "btn btn-success" %>
+      </div>
+    </div>
+  <% end %>
+</div>

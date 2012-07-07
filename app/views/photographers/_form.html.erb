@@ -1,38 +1,187 @@
-<%= form_for(@photographer) do |f| %>
-  <% if @photographer.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@photographer.errors.count, "error") %> prohibited this photographer from being saved:</h2>
+<div class="form">
+  <%= form_for(@photographer) do |f| %>
+    <% if @photographer.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@photographer.errors.count, "error") %> prohibited this photographer from being saved:</h2>
 
-      <ul>
-      <% @photographer.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @photographer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="row">
+      <h3 class="span8 offset4">Tell us what you're looking for.</h3>
     </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        I'm interested in shooting:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Wedding', 'Reception', 'Engagement', 'Pre/Post Wedding', 'New Born', 'Babies']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        I'm willing to offer:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Creative Photography', 'Standard Photography', 'Creative Video']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        After the shoot, I can provide:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Digital Photos', 'Album', 'Video', 'Small Prints', 'Big Prints']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 class="span8 offset4">A bit about yourself.</h3>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        Your full name:
+      </div>
+      <div class="f-content span8">
+        <input type="text" />
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        Link to your portfolio:
+      </div>
+      <div class="f-content span8">
+        <input type="text" />
+        <br/>
+        <div class="note">
+          Your facebook page, flickr page or your own website.
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 class="span8 offset4">How would you like to be notified?</h3>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        E-Mail:
+      </div>
+      <div class="f-content span8">
+        <input type="text" />
+        <br/>
+        <div class="note">
+          <h4>We won't spam you.</h4>
+          <div>
+            Remember, you can always instantaly turn off this notification once you find your photographer.
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="f-name span4">
+        Notify:
+      </div>
+      <div class="f-content span8">
+        <%
+          types = ['Once a day', 'Twice a week', 'Once a week']
+          types.each_with_index do |o|
+        %>
+          <div class="option">
+            <input type="checkbox" />
+            <%= o %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="f-content span8 offset4">
+        <%= f.submit "Register", :class => "btn btn-success" %>
+      </div>
+    </div>
+
   <% end %>
+</div>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :photo %><br />
-    <%= f.text_field :photo %>
-  </div>
-  <div class="field">
-    <%= f.label :portfolio %><br />
-    <%= f.text_field :portfolio %>
-  </div>
-  <div class="field">
-    <%= f.label :place %><br />
-    <%= f.text_field :place %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

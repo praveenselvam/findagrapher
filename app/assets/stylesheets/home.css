@@ -38,6 +38,10 @@ body {
 .form .f-content .option input {
   margin-right: 5px;
 }
+.form .note h4 {
+  font-weight: normal;
+  color: #c31503;
+}
 #page-bg {
   background: url("/assets/flash-bg/hand-hold.jpg") no-repeat scroll center top transparent;
   background-size: 100% auto;
@@ -78,8 +82,4 @@ header .login-section a {
   background: url("/assets/bg/trans-black-70.png") repeat scroll 0 0 transparent;
   padding: 20px;
   color: #acacac;
-}
-.email-note h4 {
-  font-weight: normal;
-  color: #c31503;
 }

@@ -28,6 +28,13 @@ header {
 header .logo img {
   margin: 20px;
 }
+header .login-section {
+  text-align: right;
+  padding-top: 40px;
+}
+header .login-section a {
+  margin-right: 20px;
+}
 #get-started .title {
   font-family: 'DistrictThinRegular';
   background: url("/assets/bg/trans-pink-60.png") repeat scroll 0 0 transparent;

@@ -1,3 +1,3 @@
 class Service < ActiveRecord::Base
-  attr_accessible :event
+  attr_accessible :service
 end

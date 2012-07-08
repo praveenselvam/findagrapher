@@ -1,10 +1,12 @@
-<p id="notice"><%= notice %></p>
+<fieldset>
+  <legend>Offerings</legend>
+  <p>
+    <label for="Offering">Offering</label>
+    <%= @offering.offering %>
+  </p>
+</fieldset>
 
-<p>
-  <b>Event:</b>
-  <%= @offering.event %>
-</p>
-
-
-<%= link_to 'Edit', edit_offering_path(@offering) %> |
-<%= link_to 'Back', offerings_path %>
+<fieldset>
+	<%= link_to 'Edit', edit_offering_path(@offering) %> |
+	<%= link_to 'Back', offerings_path %>
+</fieldset>

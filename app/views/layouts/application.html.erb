@@ -72,12 +72,17 @@
     <header class="clearfix">
       <div class="container">
         <div class="row">
-          <div class="logo span4">
+          <div class="logo span3">
             <%= link_to "/" do %>
               <%= image_tag "/assets/logo.png" %>
             <% end %>
           </div>
-          <div class="span4 offset4 login-section">
+          <div class="span2">
+            <div id="facebook-elements">
+              <div class="fb-like" data-href="https://www.facebook.com/findagrapher" data-send="true" data-layout="button_count" data-width="450" data-show-faces="true" data-colorscheme="dark" data-font="arial"></div>
+            </div>
+          </div>
+          <div class="span4 offset3 login-section">
             <% if @user %>
               <ul id="nav-links" class="clearfix">
                 <li><%= @user["name"] %></li>
@@ -91,6 +96,13 @@
       </div>
     </header>
     <%= yield %>
+    <footer class="container" id="footer">
+      <div class="row">
+        <div class="span10 offset1">
+          findagrapher is provided to your by a few photography enthusiasts in the intent of connecting photographers to everyone who need them, in a way that could benefit everyone involved. If you have feedback for us, please containeract us at <a href="mailto:findagrapher@gmail.com">findagrapher@gmail.com</a>.
+      </div>
+      </div>
+    </footer>
   </div>
 
   <div class="modal hide" id="photographer-registration">

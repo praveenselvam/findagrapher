@@ -7,6 +7,9 @@ Findagrapher::Application.routes.draw do
 
   resources :photographers, :login
 
+  match 'photographers/:id/photos' => 'photographers#photos', :as => :photographers_photos
+  match 'photographers/get_flickr_photo/:fid' => 'photographers#get_flickr_photo', :as => :get_flickr_photo
+
   root :to => 'home#index'
 
   # The priority is based upon order of creation:

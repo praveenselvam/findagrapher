@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="span4">
+    <div class="span12">
       <div class="black-box pad-top">
         <div class="title">
           <h2>Praveen Selvam</h2>
@@ -24,17 +24,38 @@
         </div>
       </div>
     </div>
-    <div class="span8">
+  </div>
+  <div class="row">
+    <div class="span12">
       <div class="black-box pad-top">
-        <div class="content">
-          <%
-            @pictures.each_with_index do |p|
-          %>
-              <%= image_tag p['src'] %>
-          <%
-            end
-          %>
+        <div class="content" id="portfolio-pictures">
+          Loading pictures from portfolio...
         </div>
     </div>
   </div>
 </div>
+
+<script>
+
+  $(function(){
+
+    $.ajax({
+      url: '<%= photographers_photos_path(@photographer) %>',
+      success: function(r){
+        var el = $('#portfolio-pictures');
+        el.html(r);
+        el.find('img').each(function(){
+          $(this).load(function(){
+            setTimeout(function(){
+              el.masonry({
+                itemSelector: 'img'
+              });
+            }, 10);
+          });
+        });
+      }
+    })
+
+  })
+
+</script>

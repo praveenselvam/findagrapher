@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require lib/jquery
+//= require lib/jquery.masonry.js
 //= require lib/bootstrap/modal.js
 //= require_tree .
 

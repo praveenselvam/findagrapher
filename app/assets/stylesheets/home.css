@@ -100,3 +100,7 @@ header .login-section a {
   text-align: center;
   font-size: 11px;
 }
+#portfolio-pictures img {
+  width: 275px;
+  padding: 10px;
+}

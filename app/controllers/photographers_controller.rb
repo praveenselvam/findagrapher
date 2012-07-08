@@ -15,37 +15,6 @@ class PhotographersController < ApplicationController
   def show
     @photographer = Photographer.find(params[:id])
 
-    begin
-      @graph = Koala::Facebook::API.new(session[:access_token])
-      @app = @graph.get_object(APP_CONFIG[:facebook][:app_id])
-
-      page_url = params[:facebook_page_url]
-
-      if session[:access_token]
-        @user    = @graph.get_object("me")
-        # This is now mocked out. Replace with actual username.
-        fql_query = "SELECT page_id, pic FROM page WHERE username = 'ps.creativefactory'"
-        page = @graph.fql_query(fql_query)
-        page_id = page.first["page_id"]
-        @pictures = @graph.fql_query("SELECT src, src_height, src_width, src_small, src_small_height, src_small_width FROM photo WHERE pid IN (SELECT pid FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner='#{page_id}' AND type!='profile'))")
-      end
-    rescue Koala::Facebook::APIError
-      session[:access_token] = nil
-    end
-
-    FlickRaw.api_key = APP_CONFIG[:flickr][:key]
-    FlickRaw.shared_secret = APP_CONFIG[:flickr][:secret]
-
-    puts "*" * 1000
-    flickr = FlickRaw::Flickr.new
-    pictures = flickr.photos.search(:user_id => '48898139@N00')
-    pictures.each do |p|
-      puts p["id"]
-      # info = flickr.photos.getInfo(:photo_id => p["id"])
-      # puts FlickRaw.url_b(info)
-    end
-    puts pictures
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @photographer }
@@ -113,5 +82,58 @@ class PhotographersController < ApplicationController
   end
 
   def photos
+    @pictures = []
+
+    portfolio = ["http://www.facebook.com/ps.creativefactory", "http://www.flickr.com/praveenselvam"]
+    portfolio = portfolio[Random.rand(portfolio.length)]
+
+    if (portfolio.split("facebook.com/").length > 1)
+      @pictures = pictures = get_photos_from_facebook(portfolio)
+      @pictures = @pictures[1..50] if @pictures.length > 50
+    elsif (portfolio.split("flickr.com/").length > 1)
+      @pictures = get_photos_from_flickr(portfolio)
+      @pictures = @pictures[1..50] if @pictures.length > 50
+    end
+
+    render :layout => false
+  end
+
+  def get_flickr_photo
+    flickr = FlickRaw::Flickr.new
+    info = flickr.photos.getInfo(:photo_id => params[:fid])
+    redirect_to FlickRaw.url_b(info)
+  end
+
+  def get_photos_from_facebook(url)
+    pictures = []
+    begin
+      @graph = Koala::Facebook::API.new(session[:access_token])
+      @app = @graph.get_object(APP_CONFIG[:facebook][:app_id])
+      username = url.split("www.facebook.com/")[1]
+      if session[:access_token]
+        @user    = @graph.get_object("me")
+        # This is now mocked out. Replace with actual username.
+        fql_query = "SELECT page_id, pic FROM page WHERE username = '#{username}'"
+        page = @graph.fql_query(fql_query)
+        page_id = page.first["page_id"]
+        pictures = @graph.fql_query("SELECT src, src_height, src_width, src_small, src_small_height, src_small_width FROM photo WHERE pid IN (SELECT pid FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner='#{page_id}' AND type!='profile'))")
+      end
+    rescue Koala::Facebook::APIError
+      session[:access_token] = nil
+    end
+    return pictures
+  end
+
+  def get_photos_from_flickr(url)
+    pictures = []
+    FlickRaw.api_key = APP_CONFIG[:flickr][:key]
+    FlickRaw.shared_secret = APP_CONFIG[:flickr][:secret]
+
+    flickr = FlickRaw::Flickr.new
+    photos = flickr.photos.search(:user_id => '48898139@N00')
+    photos.each do |p|
+      pictures.push({ "src" => "/photographers/get_flickr_photo/#{p["id"]}" })
+    end
+    return pictures
   end
 end

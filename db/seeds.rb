@@ -8,5 +8,5 @@
 
 
 events = EventType.create([{event: "Wedding"}, {event: "Reception"}, {event: "Engagement"}, {event: "Pre/Post Wedding"}, {event: "New Born"}, {event: "Babies"}])
-services = Offering.create([{event: "Creative Photography"}, {event: "Standard Photography"}, {event: "Creative Video"}])
-services = Service.create([{event: "Digital Photos"}, {event: "Album"}, {event: "Video"}])
+offerings = Offering.create([{offering: "Creative Photography"}, {offering: "Standard Photography"}, {offering: "Creative Video"}])
+services = Service.create([{service: "Digital Photos"}, {service: "Album"}, {service: "Video"}])

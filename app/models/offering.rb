@@ -1,3 +1,3 @@
 class Offering < ActiveRecord::Base
-  attr_accessible :event
+  attr_accessible :offering
 end

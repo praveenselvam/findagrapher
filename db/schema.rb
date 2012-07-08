@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707092643) do
+ActiveRecord::Schema.define(:version => 20120708064415) do
 
   create_table "event_types", :force => true do |t|
     t.string   "event"
@@ -19,10 +19,24 @@ ActiveRecord::Schema.define(:version => 20120707092643) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "event_types_photographers", :id => false, :force => true do |t|
+    t.integer  "event_type_id_id"
+    t.integer  "photographer_id_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "offerings", :force => true do |t|
-    t.string   "event"
+    t.string   "offering"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "offerings_photographers", :id => false, :force => true do |t|
+    t.integer  "offering_id_id"
+    t.integer  "photographer_id_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "photographers", :force => true do |t|
@@ -35,8 +49,15 @@ ActiveRecord::Schema.define(:version => 20120707092643) do
     t.string   "place"
   end
 
+  create_table "photographers_services", :id => false, :force => true do |t|
+    t.integer  "service_id_id"
+    t.integer  "photographer_id_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "services", :force => true do |t|
-    t.string   "event"
+    t.string   "service"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

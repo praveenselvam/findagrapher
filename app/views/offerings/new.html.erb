@@ -1,5 +1,21 @@
 <h1>New offering</h1>
 
-<%= render 'form' %>
+<% form_for(@offering) do |f| %>
+    <% if @offering.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@offering.errors.count, "error") %> prohibited this offering from being saved:</h2>
 
-<%= link_to 'Back', offerings_path %>
+        <ul>
+        <% @offering.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+	
+	<%= render :partial => 'form' %>
+  	<fieldset>
+    	<%= f.submit "Create" %>
+		<%= link_to 'Back', offerings_path %>
+  	</fieldset>
+<% end %>

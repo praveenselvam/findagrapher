@@ -17,14 +17,10 @@
 
 $(function(){
 
-	console.log($('#login'));
-
 	$(document).on('click', '#login', function(e){
 		e.preventDefault();
 		var el = $(this).hide(),
 				message = el.siblings('.login-message').show();
-
-				debugger;
 
 		FB.login(function(response) {
 			if (response.authResponse) {

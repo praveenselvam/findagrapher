@@ -1,5 +1,5 @@
 class PhotographersController < ApplicationController
-  before_filter :authorize, :only => [:index, :show, :edit]
+  before_filter :authorize, :only => [:index, :show, :edit, :photos]
 
   # GET /photographers
   # GET /photographers.json
@@ -96,17 +96,17 @@ class PhotographersController < ApplicationController
   def photos
     @photographer = Photographer.find(params[:id])
     @pictures = []
-    max_photos = 15
+    from = (params[:from] || 1).to_f
+    to = (params[:to] || 15).to_f
 
     portfolio = @photographer.portfolio
-    #portfolio = portfolio[Random.rand(portfolio.length)]
 
     if (portfolio.split("facebook.com/").length > 1)
       @pictures = pictures = get_photos_from_facebook(portfolio)
-      @pictures = @pictures[1..max_photos] if @pictures.length > max_photos
+      @pictures = @pictures[from..to]
     elsif (portfolio.split("flickr.com/").length > 1)
       @pictures = get_photos_from_flickr(portfolio)
-      @pictures = @pictures[1..max_photos] if @pictures.length > max_photos
+      @pictures = @pictures[from..to]
     else
       @pictures = []
     end
@@ -123,7 +123,8 @@ class PhotographersController < ApplicationController
   def get_photos_from_facebook(url)
     pictures = []
     @app = @graph.get_object(APP_CONFIG[:facebook][:app_id])
-    username = url.split("www.facebook.com/")[1]
+    username = url.split("facebook.com/")[1]
+    fql_query = "SELECT page_id, pic FROM page WHERE username = '#{username}'"
     page = @graph.fql_query(fql_query)
     page_id = page.first["page_id"]
     pictures = @graph.fql_query("SELECT src, src_height, src_width, src_small, src_small_height, src_small_width FROM photo WHERE pid IN (SELECT pid FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner='#{page_id}' AND type!='profile'))")

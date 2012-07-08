@@ -143,9 +143,15 @@ header #facebook-elements {
 .note {
   font-size: 11px;
 }
+#portfolio-pictures {
+  text-align: center;
+}
 #portfolio-pictures img {
-  width: 275px;
-  padding: 10px;
+  width: 298px;
+  padding: 1px;
+}
+#portfolio-pictures .load {
+  padding-top: 20px;
 }
 #profile .row {
   padding-bottom: 10px;

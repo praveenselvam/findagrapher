@@ -70,7 +70,12 @@
           <h2>Recent shots</h2>
         </div>
         <div class="content" id="portfolio-pictures">
-          Loading pictures from portfolio...
+          <div class="pictures">
+            Loading pictures from portfolio...
+          </div>
+          <div class="load clearfix">
+            <a href="javascript: void(0);" class="btn load-more hide">Load more</a>
+          </div>
         </div>
     </div>
   </div>
@@ -80,22 +85,47 @@
 
   $(function(){
 
-    $.ajax({
-      url: '<%= photographers_photos_path(@photographer) %>',
-      success: function(r){
-        var el = $('#portfolio-pictures');
-        el.html(r);
-        el.find('img').each(function(){
-          $(this).load(function(){
-            setTimeout(function(){
-              el.masonry({
-                itemSelector: 'img'
-              });
-            }, 10);
+    var loadMore = $('#portfolio-pictures .load-more'),
+        pictureContainer = $('#portfolio-pictures .pictures'),
+        pageSize = 15;
+
+    pictureContainer.masonry({
+      itemSelector: 'img'
+    });
+
+    loadMore.click(function(){
+      var from = pictureContainer.find('img').length,
+          to = from + pageSize - 1;
+
+      loadMore.hide();
+      $.ajax({
+        url: '<%= photographers_photos_path(@photographer) %>',
+        data: {
+          from: from,
+          to: to
+        },
+        success: function(r){
+          var el = pictureContainer;
+          var imagesPresent = el.find('img').length;
+          if(imagesPresent){
+            el.append(r);
+          } else {
+            el.html(r);
+          }
+          el.find('img').each(function(){
+            $(this).load(function(){
+              var el = $(this);
+              setTimeout(function(){
+                pictureContainer.masonry('reload');
+              }, 10);
+            });
           });
-        });
-      }
-    })
+        },
+        complete: function(){
+          loadMore.show();
+        }
+      });
+    }).click();
 
   })
 

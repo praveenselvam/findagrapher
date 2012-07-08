@@ -22,10 +22,12 @@
       </div>
       <div class="f-content span8">
         <% @events.each_with_index do |event| %>
-        <%= check_box_tag( "photographer[event_list][#{event.id}]", 
-                            "1", 
-                            @photographer.event_types.detect{|d| d == event}) %>
-        <%= "#{event.event}"%>
+          <div class="option">
+            <%= check_box_tag( "photographer[event_list][#{event.id}]", 
+                                "1", 
+                                @photographer.event_types.detect{|d| d == event}) %>
+            <%= "#{event.event}"%>
+          </div>
         <% end %>
       </div>
     </div>
@@ -36,10 +38,12 @@
       </div>
       <div class="f-content span8">
         <% @offerings.each_with_index do |o| %>
-        <%= check_box_tag( "photographer[offering_list][#{o.id}]", 
-                                    "1", 
-                                    @photographer.offerings.detect{|d| d == o}) %>
-        <%= "#{o.offering}"%>
+          <div class="option">
+            <%= check_box_tag( "photographer[offering_list][#{o.id}]", 
+                                        "1", 
+                                        @photographer.offerings.detect{|d| d == o}) %>
+            <%= "#{o.offering}"%>
+          </div>
         <% end %>
       </div>
     </div>

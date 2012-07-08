@@ -87,18 +87,16 @@ header #nav-links li:first-child {
 header #facebook-elements {
   margin: 36px 0 0 20px;
 }
+#page-content {
+  min-height: 500px;
+}
 #footer {
-  position: absolute;
-  bottom: 0;
-  width: 940px;
-  margin-left: -470px;
-  margin-bottom: 20px;
-  left: 50%;
   background: url("/assets/bg/trans-black-70.png") repeat scroll 0 0 transparent;
   margin-top: 40px;
-  padding: 20px 0;
+  padding: 10px 0;
   text-align: center;
   color: #ACACAC;
+  font-size: 11.5px;
 }
 .white-box .title,
 .black-box .title {
@@ -121,6 +119,17 @@ header #facebook-elements {
   padding: 20px;
   color: #acacac;
 }
+#get-started .content h3 {
+  font-family: 'DistrictThinRegular';
+  color: #fff;
+  margin-top: 20px;
+  border-bottom: 1px solid #606060;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+#get-started .find-photographer {
+  margin-bottom: 5px;
+}
 #photographer-registration .login-section {
   padding: 10px 0;
   text-align: center;
@@ -129,7 +138,9 @@ header #facebook-elements {
   margin-bottom: 5px;
 }
 #photographer-registration .login-section .note {
-  text-align: center;
+  font-size: 11px;
+}
+.note {
   font-size: 11px;
 }
 #portfolio-pictures img {

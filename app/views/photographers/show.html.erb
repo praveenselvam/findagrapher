@@ -1,25 +1,50 @@
 <div class="container">
   <div class="row">
     <div class="span12">
-      <div class="black-box pad-top">
+      <div class="white-box pad-top" id="profile">
         <div class="title">
           <h2>Praveen Selvam</h2>
         </div>
-        <div class="content">
-
-          <!-- This dummy content below is to autorize to facebook. Will be moved somewhere else. -->
-          <div class="dummy">
-            <a href='/auth/facebook' class="fb_button fb_button_medium" id="login">
-              <span class="fb_button_text">Log In</span>
-            </a>
-            <a href='/auth/facebook' class="fb_button fb_button_medium" id="logout">
-              <span class="fb_button_text">Logout</span>
-            </a>
-            <% if @user %>
-              <div>
-                Welcome, <strong><%= @user['name'] %></strong>
+        <div class="content clearfix">
+          <div class="profile-pic">
+            <%= image_tag "/assets/default-profile-pic.jpg" %>
+          </div>
+          <div class="profile-info">
+            <div class="form">
+              <div class="row">
+                <div class="f-name span2">Shoots:</div>
+                <div class="f-content span6">Wedding, New Born</div>
               </div>
-            <% end %>
+
+              <div class="row">
+                <div class="f-name span2">Offers:</div>
+                <div class="f-content span6">Creative Photography, Standard Photography</div>
+              </div>
+
+              <div class="row">
+                <div class="f-name span2">Provides:</div>
+                <div class="f-content span6">Digital Photos, Big Prints</div>
+              </div>
+
+              <div class="row">
+                <div class="f-name span2">Location:</div>
+                <div class="f-content span6">Chennai</div>
+              </div>
+
+              <div class="row">
+                <div class="f-name span2">Contact:</div>
+                <div class="f-content span6">praveen.selvam@gmail.com</div>
+              </div>
+
+              <div class="row">
+                <div class="f-name span2">Portfolio:</div>
+                <div class="f-content span6">
+                  <strong>
+                    <a href="http://www.facebook.com/ps.creativefactory" target="_blank">http://www.facebook.com/ps.creativefactory</a> <i class="icon-share-alt"></i>
+                  </strong>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -28,6 +53,9 @@
   <div class="row">
     <div class="span12">
       <div class="black-box pad-top">
+        <div class="title">
+          <h2>Recent shots</h2>
+        </div>
         <div class="content" id="portfolio-pictures">
           Loading pictures from portfolio...
         </div>

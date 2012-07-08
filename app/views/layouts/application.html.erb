@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 
-  <title>Findagrapher</title>
+  <title>findagrapher - For everyone, for every occasion.</title>
 
   <!--[if IEMobile]>
   <link rel="stylesheet" href="mobile.css" media="screen" type="text/css"  />
@@ -39,11 +39,6 @@
       // Listen to the auth.login which will be called when the user logs in
       // using the Login button
       FB.Event.subscribe('auth.login', function(response) {
-        // We want to reload the page now so Ruby can read the cookie that the
-        // Javascript SDK sat. But we don't want to use
-        // window.location.reload() because if this is in a canvas there was a
-        // post made to this page and a reload will trigger a message to the
-        // user asking if they want to send data again.
         $.ajax({
           url: '/login',
           type: 'post',
@@ -55,6 +50,10 @@
             window.location = window.location;
           }
         });
+      });
+
+      FB.Event.subscribe('auth.logout', function(response) {
+        window.location = window.location;
       });
 
       FB.Canvas.setAutoGrow();
@@ -78,8 +77,15 @@
               <%= image_tag "/assets/logo.png" %>
             <% end %>
           </div>
-          <div class="span2 offset6 login-section">
-            <a href="#photographer-registration" data-toggle="modal" class="btn">Register</a>
+          <div class="span4 offset4 login-section">
+            <% if @user %>
+              <ul id="nav-links" class="clearfix">
+                <li><%= @user["name"] %></li>
+                <li><a href="javascript: void(0);" id="logout">Logoff</a></li>
+              </ul>
+            <% else %>
+              <a href="#photographer-registration" data-toggle="modal" class="btn">Login / Register</a>
+            <% end %>
           </div>
         </div>
       </div>
@@ -97,7 +103,7 @@
         Good news! findagrapher lets you sign in with your existing facebook account.
       </p>
       <p class="login-section">
-        <%= link_to "Login using facebook", new_photographer_path, :class => "btn btn-info" %>
+        <%= link_to "Login using facebook", new_photographer_path, :class => "btn btn-info", :id => 'login' %>
         <br/>
         <span class="note">
           We don't post anything without your knowledge.

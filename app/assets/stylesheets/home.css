@@ -68,6 +68,22 @@ header .login-section {
 header .login-section a {
   margin-right: 20px;
 }
+header #nav-links {
+  list-style: none;
+  margin-right: 20px;
+  float: right;
+}
+header #nav-links li {
+  list-style: none;
+  float: left;
+  margin-left: 20px;
+  padding-left: 20px;
+  border-left: 1px solid;
+  color: #ACACAC;
+}
+header #nav-links li:first-child {
+  border: none;
+}
 .white-box .title,
 .black-box .title {
   font-family: 'DistrictThinRegular';
@@ -103,4 +119,20 @@ header .login-section a {
 #portfolio-pictures img {
   width: 275px;
   padding: 10px;
+}
+#profile .row {
+  padding-bottom: 10px;
+}
+#profile .profile-pic {
+  width: 200px;
+  float: left;
+  margin-left: 20px;
+}
+#profile .profile-pic img {
+  width: 100%;
+}
+#profile .profile-info {
+  float: left;
+  margin-left: 20px;
+  width: 680px;
 }

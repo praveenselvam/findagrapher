@@ -4,8 +4,12 @@ one:
   name: MyString
   photo: MyString
   portfolio: MyString
+  place: MyString
+  email: MyString
 
 two:
   name: MyString
   photo: MyString
   portfolio: MyString
+  place: MyString
+  email: MyString

@@ -18,7 +18,7 @@ class PhotographersControllerTest < ActionController::TestCase
 
   test "should create photographer" do
     assert_difference('Photographer.count') do
-      post :create, photographer: { name: @photographer.name, photo: @photographer.photo, portfolio: @photographer.portfolio }
+      post :create, photographer: { name: @photographer.name, photo: @photographer.photo, portfolio: @photographer.portfolio, place: @photographer.place, email: @photographer.email }
     end
 
     assert_redirected_to photographer_path(assigns(:photographer))

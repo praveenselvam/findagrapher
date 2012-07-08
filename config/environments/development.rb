@@ -34,6 +34,4 @@ Findagrapher::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  FACEBOOK_APP_ID = 245628982220634
 end

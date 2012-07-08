@@ -33,6 +33,19 @@ class PhotographersController < ApplicationController
       session[:access_token] = nil
     end
 
+    FlickRaw.api_key = APP_CONFIG[:flickr][:key]
+    FlickRaw.shared_secret = APP_CONFIG[:flickr][:secret]
+
+    puts "*" * 1000
+    flickr = FlickRaw::Flickr.new
+    pictures = flickr.photos.search(:user_id => '48898139@N00')
+    pictures.each do |p|
+      puts p["id"]
+      # info = flickr.photos.getInfo(:photo_id => p["id"])
+      # puts FlickRaw.url_b(info)
+    end
+    puts pictures
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @photographer }
@@ -97,5 +110,8 @@ class PhotographersController < ApplicationController
       format.html { redirect_to photographers_url }
       format.json { head :no_content }
     end
+  end
+
+  def photos
   end
 end

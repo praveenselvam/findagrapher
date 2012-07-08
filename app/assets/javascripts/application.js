@@ -21,11 +21,18 @@ $(function(){
 
 	$(document).on('click', '#login', function(e){
 		e.preventDefault();
+		var el = $(this).hide(),
+				message = el.siblings('.login-message').show();
+
+				debugger;
+
 		FB.login(function(response) {
 			if (response.authResponse) {
 				//	Logged in.
 			} else {
 				console.log('User cancelled login or did not fully authorize.');
+				el.show();
+				message.hide();
 			}
 		});
 	});

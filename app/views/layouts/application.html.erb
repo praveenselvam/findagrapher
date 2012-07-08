@@ -84,7 +84,7 @@
                 <li><a href="javascript: void(0);" id="logout">Logoff</a></li>
               </ul>
             <% else %>
-              <a href="#photographer-registration" data-toggle="modal" class="btn">Login / Register</a>
+              <a href="#photographer-registration" data-toggle="modal" class="btn">Photographer Login / Register</a>
             <% end %>
           </div>
         </div>
@@ -100,17 +100,15 @@
     </div>
     <div class="modal-body">
       <p>
-        Good news! findagrapher lets you sign in with your existing facebook account.
+        You can instantly sign in with your existing facebook account. By registering, you can link your existing portfolios, setup alerts & get notified of clients of your choice. All for free!
       </p>
       <p class="login-section">
         <%= link_to "Login using facebook", new_photographer_path, :class => "btn btn-info", :id => 'login' %>
+        <span class="login-message hide">Logging you in...</span>
         <br/>
         <span class="note">
           We don't post anything without your knowledge.
         </span>
-      </p>
-      <p>
-        Register today for free and get in before the competition builds up. Link your existing portfolios, setup alerts & get notified when we come to know of clients of your choice.
       </p>
     </div>
   </div>

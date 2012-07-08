@@ -94,11 +94,12 @@ class PhotographersController < ApplicationController
   end
 
   def photos
+    @photographer = Photographer.find(params[:id])
     @pictures = []
     max_photos = 15
 
-    portfolio = ["http://www.facebook.com/ps.creativefactory", "http://www.flickr.com/praveenselvam"]
-    portfolio = portfolio[Random.rand(portfolio.length)]
+    portfolio = @photographer.portfolio
+    #portfolio = portfolio[Random.rand(portfolio.length)]
 
     if (portfolio.split("facebook.com/").length > 1)
       @pictures = pictures = get_photos_from_facebook(portfolio)
@@ -106,6 +107,8 @@ class PhotographersController < ApplicationController
     elsif (portfolio.split("flickr.com/").length > 1)
       @pictures = get_photos_from_flickr(portfolio)
       @pictures = @pictures[1..max_photos] if @pictures.length > max_photos
+    else
+      @pictures = []
     end
 
     render :layout => false

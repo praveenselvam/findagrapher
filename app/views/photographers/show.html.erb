@@ -3,7 +3,7 @@
     <div class="span12">
       <div class="white-box pad-top" id="profile">
         <div class="title">
-          <h2>Praveen Selvam</h2>
+          <h2> <%= @photographer.name %></h2>
         </div>
         <div class="content clearfix">
           <div class="profile-pic">
@@ -11,36 +11,49 @@
           </div>
           <div class="profile-info">
             <div class="form">
+              
               <div class="row">
                 <div class="f-name span2">Shoots:</div>
-                <div class="f-content span6">Wedding, New Born</div>
+                <div class="f-content span6">
+                  <% @photographer.event_types.each_with_index do |e|  %>
+                  <%= "#{e.event}, " %>
+                  <% end %>
+                </div>
               </div>
 
               <div class="row">
                 <div class="f-name span2">Offers:</div>
-                <div class="f-content span6">Creative Photography, Standard Photography</div>
+                <div class="f-content span6">
+                  <% @photographer.offerings.each_with_index do |o|  %>
+                  <%= "#{o.offering}, " %>
+                  <% end %>
+                </div>
               </div>
 
               <div class="row">
                 <div class="f-name span2">Provides:</div>
-                <div class="f-content span6">Digital Photos, Big Prints</div>
+                <div class="f-content span6">
+                  <% @photographer.services.each_with_index do |s|  %>
+                  <%= "#{s.service}, " %>
+                  <% end %>
+                </div>
               </div>
 
               <div class="row">
                 <div class="f-name span2">Location:</div>
-                <div class="f-content span6">Chennai</div>
+                <div class="f-content span6"><%= @photographer.place %></div>
               </div>
 
               <div class="row">
                 <div class="f-name span2">Contact:</div>
-                <div class="f-content span6">praveen.selvam@gmail.com</div>
+                <div class="f-content span6"><%= @photographer.email %></div>
               </div>
 
               <div class="row">
                 <div class="f-name span2">Portfolio:</div>
                 <div class="f-content span6">
                   <strong>
-                    <a href="http://www.facebook.com/ps.creativefactory" target="_blank">http://www.facebook.com/ps.creativefactory</a> <i class="icon-share-alt"></i>
+                    <a href=<%= @photographer.portfolio %> target="_blank"><%= @photographer.portfolio %></a> <i class="icon-share-alt"></i>
                   </strong>
                 </div>
               </div>

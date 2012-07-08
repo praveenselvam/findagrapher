@@ -17,6 +17,8 @@ class Photographer < ActiveRecord::Base
   after_save :update_offering_list
   after_save :update_service_list
 
+  
+  
   private
 
   def update_event_types

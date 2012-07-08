@@ -21,14 +21,11 @@
         I'm interested in shooting:
       </div>
       <div class="f-content span8">
-        <%
-          types = ['Wedding', 'Reception', 'Engagement', 'Pre/Post Wedding', 'New Born', 'Babies']
-          types.each_with_index do |o|
-        %>
-          <div class="option">
-            <input type="checkbox" />
-            <%= o %>
-          </div>
+        <% @events.each_with_index do |event| %>
+        <%= check_box_tag( "photographer[event_list][#{event.id}]", 
+                            "1", 
+                            @photographer.event_types.detect{|d| d == event}) %>
+        <%= "#{event.event}"%>
         <% end %>
       </div>
     </div>
@@ -38,14 +35,11 @@
         I'm willing to offer:
       </div>
       <div class="f-content span8">
-        <%
-          types = ['Creative Photography', 'Standard Photography', 'Creative Video']
-          types.each_with_index do |o|
-        %>
-          <div class="option">
-            <input type="checkbox" />
-            <%= o %>
-          </div>
+        <% @offerings.each_with_index do |o| %>
+        <%= check_box_tag( "photographer[offering_list][#{o.id}]", 
+                                    "1", 
+                                    @photographer.offerings.detect{|d| d == o}) %>
+        <%= "#{o.offering}"%>
         <% end %>
       </div>
     </div>
@@ -55,14 +49,11 @@
         After the shoot, I can provide:
       </div>
       <div class="f-content span8">
-        <%
-          types = ['Digital Photos', 'Album', 'Video', 'Small Prints', 'Big Prints']
-          types.each_with_index do |o|
-        %>
-          <div class="option">
-            <input type="checkbox" />
-            <%= o %>
-          </div>
+        <% @services.each_with_index do |s| %>
+        <%= check_box_tag( "photographer[service_list][#{s.id}]", 
+                                    "1", 
+                                    @photographer.services.detect{|d| d == s}) %>
+        <%= "#{s.service}"%>
         <% end %>
       </div>
     </div>
@@ -94,7 +85,7 @@
         Link to your portfolio:
       </div>
       <div class="f-content span8">
-        <input type="text" />
+        <%= f.text_field :portfolio %>
         <br/>
         <div class="note">
           Your facebook page, flickr page or your own website.

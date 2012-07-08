@@ -20,10 +20,8 @@ ActiveRecord::Schema.define(:version => 20120708064415) do
   end
 
   create_table "event_types_photographers", :id => false, :force => true do |t|
-    t.integer  "event_type_id_id"
-    t.integer  "photographer_id_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer "event_type_id"
+    t.integer "photographer_id"
   end
 
   create_table "offerings", :force => true do |t|
@@ -33,10 +31,8 @@ ActiveRecord::Schema.define(:version => 20120708064415) do
   end
 
   create_table "offerings_photographers", :id => false, :force => true do |t|
-    t.integer  "offering_id_id"
-    t.integer  "photographer_id_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer "offering_id"
+    t.integer "photographer_id"
   end
 
   create_table "photographers", :force => true do |t|
@@ -50,10 +46,8 @@ ActiveRecord::Schema.define(:version => 20120708064415) do
   end
 
   create_table "photographers_services", :id => false, :force => true do |t|
-    t.integer  "service_id_id"
-    t.integer  "photographer_id_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.integer "service_id"
+    t.integer "photographer_id"
   end
 
   create_table "services", :force => true do |t|

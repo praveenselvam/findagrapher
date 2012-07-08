@@ -1,9 +1,8 @@
 class PhotographersServices < ActiveRecord::Migration
   def self.up
   	create_table :photographers_services, :id => false do |t|
-  		t.references :service_id
-  		t.references :photographer_id
-  		t.timestamps
+  		t.references :service
+  		t.references :photographer
   	end
   end
   def self.down

@@ -25,6 +25,9 @@ class PhotographersController < ApplicationController
   # GET /photographers/new.json
   def new
     @photographer = Photographer.new
+    get_all_events
+    get_all_offerings
+    get_all_services
 
     respond_to do |format|
       format.html # new.html.erb
@@ -41,6 +44,9 @@ class PhotographersController < ApplicationController
   # POST /photographers.json
   def create
     @photographer = Photographer.new(params[:photographer])
+    get_all_events
+    get_all_offerings
+    get_all_services
 
     respond_to do |format|
       if @photographer.save
@@ -56,7 +62,11 @@ class PhotographersController < ApplicationController
   # PUT /photographers/1
   # PUT /photographers/1.json
   def update
+    params[:events] ||= {}
     @photographer = Photographer.find(params[:id])
+    get_all_events
+    get_all_offerings
+    get_all_services
 
     respond_to do |format|
       if @photographer.update_attributes(params[:photographer])
@@ -136,5 +146,17 @@ class PhotographersController < ApplicationController
       pictures.push({ "src" => "/photographers/get_flickr_photo/#{p["id"]}" })
     end
     return pictures
+  end
+
+  def get_all_offerings
+    @offerings = Offering.find(:all)
+  end
+
+  def get_all_events
+    @events = EventType.find(:all)
+  end
+  
+  def get_all_services
+    @services = Service.find(:all)
   end
 end

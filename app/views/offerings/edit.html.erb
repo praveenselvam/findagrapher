@@ -1,6 +1,6 @@
 <h1>Editing offering</h1>
 
-<% form_for(@offering) do |f| %>
+<%= form_for(@offering) do |f| %>
     <% if @offering.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@offering.errors.count, "error") %> prohibited this offering from being saved:</h2>
@@ -12,8 +12,8 @@
         </ul>
       </div>
     <% end %>
-	
-	<%= render :partial => 'form' %>
+
+	<%= render :partial => 'form',  :locals => { :offering => @offering }  %>
 	<fieldset>
     	<%= f.submit "Update" %>
 		<%= link_to 'Show', @offering %> |

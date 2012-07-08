@@ -1,4 +1,6 @@
 class PhotographersController < ApplicationController
+  before_filter :authorize, :only => [:index, :show, :edit]
+
   # GET /photographers
   # GET /photographers.json
   def index
@@ -117,21 +119,11 @@ class PhotographersController < ApplicationController
 
   def get_photos_from_facebook(url)
     pictures = []
-    begin
-      @graph = Koala::Facebook::API.new(session[:access_token])
-      @app = @graph.get_object(APP_CONFIG[:facebook][:app_id])
-      username = url.split("www.facebook.com/")[1]
-      if session[:access_token]
-        @user    = @graph.get_object("me")
-        # This is now mocked out. Replace with actual username.
-        fql_query = "SELECT page_id, pic FROM page WHERE username = '#{username}'"
-        page = @graph.fql_query(fql_query)
-        page_id = page.first["page_id"]
-        pictures = @graph.fql_query("SELECT src, src_height, src_width, src_small, src_small_height, src_small_width FROM photo WHERE pid IN (SELECT pid FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner='#{page_id}' AND type!='profile'))")
-      end
-    rescue Koala::Facebook::APIError
-      session[:access_token] = nil
-    end
+    @app = @graph.get_object(APP_CONFIG[:facebook][:app_id])
+    username = url.split("www.facebook.com/")[1]
+    page = @graph.fql_query(fql_query)
+    page_id = page.first["page_id"]
+    pictures = @graph.fql_query("SELECT src, src_height, src_width, src_small, src_small_height, src_small_width FROM photo WHERE pid IN (SELECT pid FROM photo WHERE aid IN (SELECT aid FROM album WHERE owner='#{page_id}' AND type!='profile'))")
     return pictures
   end
 

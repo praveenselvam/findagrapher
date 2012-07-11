@@ -1,4 +1,6 @@
 class ShootsController < ApplicationController
+  before_filter :authorize, :only => [:new]
+
   # GET /shoots
   # GET /shoots.json
   def index
